@@ -27,202 +27,25 @@ public class Main {
         getKVRel();
         getBLRel();
         getLVRel();
+        System.out.println("\nDie Datenbank wurde vollständig gelesen und geschrieben");
     }
 
-    public static boolean conMySQL() {
-        try {
-            mysql = DriverManager.getConnection(url_mysql, user_mysql, pass);
-            System.out.println("\nDie Verbindung zu MySQL wurde erfolgreich hergestellt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getBenutzer() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM benutzer";
-            ResultSet rs = stm.executeQuery(abfrage);
-            while(rs.next()) {
-                addBenutzer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
-            }
-            System.out.println("\nDie Benutzer wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Benutzer wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getFollower() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM follower";
-            ResultSet rs = stm.executeQuery(abfrage);
-            while(rs.next()) {
-                addFollower(rs.getString(2), rs.getString(3));
-            }
-            System.out.println("\nDie Follower wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Follower wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getVeroeffentlichungen() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Veröffentlichungen";
-            ResultSet rs = stm.executeQuery(abfrage);
-            while(rs.next()) {
-                addVeröffentlichungen(rs.getString(1), rs.getString(2), rs.getString(3));
-            }
-            System.out.println("\nDie Veröffentlichungen wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Veröffentlichungen wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getVeroeffentlichungenRel() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Benutzer";
-            ResultSet rs = stm.executeQuery(abfrage);
-            while(rs.next()) {
-                addVeröffentlichungenRel(rs.getString(1));
-            }
-            System.out.println("\nDie Veröffentlichungen wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Veröffentlichungen wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getKommentare() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Kommentare";
-            ResultSet rs = stm.executeQuery(abfrage);
-            while(rs.next()) {
-                addKommentare(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
-            }
-            System.out.println("\nDie Kommentare wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Kommentare wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getBKRel() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Benutzer";
-            ResultSet rs = stm.executeQuery(abfrage);
-
-            while(rs.next()) {
-                addBKRel(rs.getString(1));
-            }
-            System.out.println("\nDie Kommentare wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Kommentare wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getKVRel() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Veröffentlichungen";
-            ResultSet rs = stm.executeQuery(abfrage);
-
-            while(rs.next()) {
-                addKVRel(rs.getString(1));
-            }
-            System.out.println("\nDie Kommentare wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Kommentare wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getLikes() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Likes";
-            ResultSet rs = stm.executeQuery(abfrage);
-            while(rs.next()) {
-                addLikes(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
-            }
-            System.out.println("\nDie Likes wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Likes wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getBLRel() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Benutzer";
-            ResultSet rs = stm.executeQuery(abfrage);
-
-            while(rs.next()) {
-                addBLRel(rs.getString(1));
-            }
-            System.out.println("\nDie Kommentare wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Kommentare wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean getLVRel() {
-        try {
-            Statement stm = mysql.createStatement();
-            String abfrage = "SELECT * FROM Veröffentlichungen";
-            ResultSet rs = stm.executeQuery(abfrage);
-
-            while(rs.next()) {
-                addLVRel(rs.getString(1));
-            }
-            System.out.println("\nDie Kommentare wurden aus der Datenbank gelesen");
-            System.out.println("\nDie Kommentare wurden der Datenbank hinzugefügt");
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return true;
-    }
-
-    public static boolean conNeo4j() {
+    public static void conNeo4j() {
         try {
             neo4j = DriverManager.getConnection(url_neo4j, user_neo4j, pass);
             System.out.println("\nDie Verbindung zu Neo4j wurde erfolgreich hergestellt");
-            return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return true;
+    }
+
+    public static void conMySQL() {
+        try {
+            mysql = DriverManager.getConnection(url_mysql, user_mysql, pass);
+            System.out.println("\nDie Verbindung zu MySQL wurde erfolgreich hergestellt");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void clearDB() {
@@ -238,6 +61,154 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
+
+    /* --------------------------------------MYSQL-----------------------------------------------------*/
+
+    public static void getBenutzer() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM benutzer";
+            ResultSet rs = stm.executeQuery(abfrage);
+            while(rs.next()) {
+                addBenutzer(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+            }
+            System.out.println("\nDie Benutzer wurden aus der Datenbank gelesen");
+            System.out.println("\nDie Benutzer wurden der Datenbank hinzugefügt");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getFollower() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM follower";
+            ResultSet rs = stm.executeQuery(abfrage);
+            while(rs.next()) {
+                addFollower(rs.getString(2), rs.getString(3));
+            }
+            System.out.println("\nDie Follower wurden aus der Datenbank gelesen");
+            System.out.println("\nDie Follower wurden der Datenbank hinzugefügt");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getVeroeffentlichungen() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Veröffentlichungen";
+            ResultSet rs = stm.executeQuery(abfrage);
+            while(rs.next()) {
+                addVeroeffentlichungen(rs.getString(1), rs.getString(2), rs.getString(3));
+            }
+            System.out.println("\nDie Veröffentlichungen wurden aus der Datenbank gelesen");
+            System.out.println("\nDie Veröffentlichungen wurden der Datenbank hinzugefügt");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getVeroeffentlichungenRel() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Benutzer";
+            ResultSet rs = stm.executeQuery(abfrage);
+            while(rs.next()) {
+                addVeroeffentlichungenRel(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getKommentare() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Kommentare";
+            ResultSet rs = stm.executeQuery(abfrage);
+            while(rs.next()) {
+                addKommentare(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+            }
+            System.out.println("\nDie Kommentare wurden aus der Datenbank gelesen");
+            System.out.println("\nDie Kommentare wurden der Datenbank hinzugefügt");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getBKRel() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Benutzer";
+            ResultSet rs = stm.executeQuery(abfrage);
+
+            while(rs.next()) {
+                addBKRel(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getKVRel() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Veröffentlichungen";
+            ResultSet rs = stm.executeQuery(abfrage);
+
+            while(rs.next()) {
+                addKVRel(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getLikes() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Likes";
+            ResultSet rs = stm.executeQuery(abfrage);
+            while(rs.next()) {
+                addLikes(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+            }
+            System.out.println("\nDie Likes wurden aus der Datenbank gelesen");
+            System.out.println("\nDie Likes wurden der Datenbank hinzugefügt");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getBLRel() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Benutzer";
+            ResultSet rs = stm.executeQuery(abfrage);
+
+            while(rs.next()) {
+                addBLRel(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void getLVRel() {
+        try {
+            Statement stm = mysql.createStatement();
+            String abfrage = "SELECT * FROM Veröffentlichungen";
+            ResultSet rs = stm.executeQuery(abfrage);
+
+            while(rs.next()) {
+                addLVRel(rs.getString(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /* --------------------------------------NEO4J-----------------------------------------------------*/
 
     public static void addBenutzer(String a, String b, String c, String d) {
         try {
@@ -261,7 +232,7 @@ public class Main {
         }
     }
 
-    private static void addVeröffentlichungen(String a, String b, String c) {
+    private static void addVeroeffentlichungen(String a, String b, String c) {
         try {
             Statement stm = neo4j.createStatement();
             String abfrage = "create (v:Veröffentlichung {id: '"+a+"', nutzername:'"+b+"', datum:'"+c+"'})";
@@ -271,7 +242,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
     }
-    private static void addVeröffentlichungenRel(String a) {
+    private static void addVeroeffentlichungenRel(String a) {
         try {
             Statement stm = neo4j.createStatement();
             String abfrage = "MATCH (b:Benutzer), (v:Veröffentlichung) WHERE b.nutzername = '"+ a +"' AND v.nutzername = '" + a + "' CREATE (b)-[r:veröffentlicht]->(v) RETURN r";
